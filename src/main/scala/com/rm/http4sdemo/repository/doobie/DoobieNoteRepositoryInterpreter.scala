@@ -3,7 +3,6 @@ package com.rm.http4sdemo.repository.doobie
 import cats._
 import cats.data.OptionT
 import cats.implicits._
-import com.rm.http4sdemo.domain.Note
 import doobie._
 import doobie.implicits._
 import com.rm.http4sdemo.domain.{Note, NoteRepositoryAlgebra}
@@ -72,7 +71,7 @@ class DoobieNoteRepositoryInterpreter[F[_]: Monad](val xa: Transactor[F])
     paginate(pageSize, offset)(selectAll).to[List].transact(xa)
 }
 
-object DoobieUserRepositoryInterpreter {
+object DoobieNoteRepositoryInterpreter {
   def apply[F[_]: Monad](xa: Transactor[F]): DoobieNoteRepositoryInterpreter[F] =
     new DoobieNoteRepositoryInterpreter[F](xa)
 }

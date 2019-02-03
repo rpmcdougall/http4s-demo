@@ -4,8 +4,8 @@ case class Note (
    title: String,
    author: String,
    content: String,
-   id: Option[Long] = None,
-   synopsis: Option[String] = None
+   synopsis: String,
+   id: Option[Long] = None
  )
 
 

@@ -1,6 +1,6 @@
 package com.rm.http4sdemo.config
 
-mport cats.syntax.functor._
+import cats.syntax.functor._
 import cats.effect.{Async, ContextShift, Resource, Sync}
 import doobie.hikari.HikariTransactor
 import org.flywaydb.core.Flyway
