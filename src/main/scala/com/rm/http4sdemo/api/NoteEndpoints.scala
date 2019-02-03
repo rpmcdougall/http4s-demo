@@ -76,33 +76,6 @@ class NoteEndpoints[F[_]: Effect] extends Http4sDsl[F] {
         } yield resp
     }
 
-//  private def findNoteByTitle(petService: NoteService[F]): HttpRoutes[F] =
-//    HttpRoutes.of[F] {
-//      case GET -> Root / "notes" / "findByNotes" :? StatusMatcher(Valid(Nil)) =>
-//        // User did not specify any statuses
-//        BadRequest("status parameter not specified")
-//
-//      case GET -> Root / "pets" / "findByStatus" :? StatusMatcher(Valid(statuses)) =>
-//        // We have a list of valid statuses, find them and return
-//        for {
-//          retrieved <- petService.findByStatus(NonEmptyList.fromListUnsafe(statuses))
-//          resp <- Ok(retrieved.asJson)
-//        } yield resp
-//    }
-
-//  private def findPetsByTagEndpoint(petService: PetService[F]): HttpRoutes[F] =
-//    HttpRoutes.of[F] {
-//      case GET -> Root / "pets" / "findByTags" :? TagMatcher(Valid(Nil)) =>
-//        BadRequest("tag parameter not specified")
-//
-//      case GET -> Root / "pets" / "findByTags" :? TagMatcher(Valid(tags)) =>
-//        for {
-//          retrieved <- petService.findByTag(NonEmptyList.fromListUnsafe(tags))
-//          resp <- Ok(retrieved.asJson)
-//        } yield resp
-//
-//    }
-
   def endpoints(noteService: NoteService[F]): HttpRoutes[F] =
     createNoteEndpoint(noteService) <+>
       getNoteEndpoint(noteService) <+>
