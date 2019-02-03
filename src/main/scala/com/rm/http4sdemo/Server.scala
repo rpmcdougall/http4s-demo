@@ -1,10 +1,9 @@
 package com.rm.http4sdemo
 
 //import config._
-import domain.Note._
 import api.NoteEndpoints
 import com.rm.http4sdemo.config.DatabaseConfig
-import com.rm.http4sdemo.domain.NoteService
+import com.rm.http4sdemo.domain.{NoteService, NoteValidationInterpreter}
 import repository.doobie.DoobieNoteRepositoryInterpreter
 import cats.effect._
 import cats.implicits._
@@ -25,7 +24,7 @@ object Server extends IOApp {
       noteRepo        =  DoobieNoteRepositoryInterpreter[F](xa)
       noteValidation  =  NoteValidationInterpreter[F](noteRepo)
       noteService     = NoteService[F] (noteRepo, noteValidation)
-      services       =  NoteEndpoints.endpoints[F](noteService) <+>
+      services       =  NoteEndpoints.endpoints[F](noteService)
       httpApp = Router("/" -> services).orNotFound
       _ <- Resource.liftF(DatabaseConfig.initializeDb(conf.db))
       server <-
