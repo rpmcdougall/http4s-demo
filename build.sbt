@@ -13,6 +13,8 @@ val ScalaTestVersion       = "3.0.5"
 val FlywayVersion          = "5.2.4"
 val TsecVersion            = "0.1.0-M2"
 
+
+ensimeScalaVersion in ThisBuild := "2.12.8"
 resolvers += Resolver.sonatypeRepo("snapshots")
 lazy val root = (project in file("."))
   .settings(
